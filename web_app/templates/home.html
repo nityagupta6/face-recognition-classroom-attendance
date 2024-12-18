@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to Face Recognition App{% endblock %}
+
+{% block content %}
+<body class="homepage">
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Welcome to the Face Recognition Attendance System</h1>
+            <p>Streamline attendance management using advanced face recognition technology.</p>
+            <a href="{{ url_for('app_routes.register') }}" class="btn-primary">Get Started</a>
+        </div>
+    </div>
+
+    <section class="features">
+        <div class="feature">
+            <h2>Seamless Registration</h2>
+            <p>Register easily with just a few clicks and start using our attendance system.</p>
+        </div>
+        <div class="feature">
+            <h2>Face Recognition Technology</h2>
+            <p>Our system leverages advanced AI algorithms to detect and record attendance accurately.</p>
+        </div>
+        <div class="feature">
+            <h2>Secure and Reliable</h2>
+            <p>Your data is encrypted and stored securely, ensuring privacy and safety.</p>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Join Today and Simplify Attendance Management!</h2>
+        <a href="{{ url_for('app_routes.register') }}" class="btn-secondary">Sign Up Now</a>
+    </section>
+</body>
+{% endblock %}

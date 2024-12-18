@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Attendance Report{% endblock %}
+{% block content %}
+<div class="attendance-report">
+    <h2>Attendance Report for {{course_name}}</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Roll Number</th>
+                <th>Attendance Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in report_data %}
+            <tr>
+                <td>
+                    <a href="{{ url_for('app_routes.view_student_attendance', course_id=course_id, student_id=record.id) }}">
+                        {{ record.name }}
+                    </a>
+                </td>
+                <td>{{ record.roll_number }}</td>
+                <td>{{ record.attendance_percentage }}%</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

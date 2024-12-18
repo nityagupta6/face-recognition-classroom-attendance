@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Student Dashboard{% endblock %}
+{% block content %}
+<div class="attendance-page">
+    <h2>Welcome, {{ current_user.name }}</h2>
+    <h3>Your Attendance Records</h3>
+
+    <!-- Flash messages for success or error notifications -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <table class="attendance-table">
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Attendance Chart</th>
+                <th>Attendance Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in attendance_summary %}
+            <tr>
+                <!-- Make the course name a clickable link -->
+                <td><a href="{{ url_for('app_routes.view_attendance', course_id=record.course.id) }}">{{ record.course.name }}</a></td>
+                <td>
+                    <!-- Use a class for consistent canvas sizing -->
+                    <canvas id="attendance-chart-{{ record.course.id }}"></canvas>
+                </td>
+                <td>
+                    <!-- Display the percentage with 2 decimal points -->
+                    {{ record.percentage|round(2) }}%
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Include Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Link to the external JS file -->
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+<script>
+    // Pass attendance summary data to JavaScript
+    const attendanceData = {{ attendance_summary|tojson }};
+</script>
+
+{% endblock %}

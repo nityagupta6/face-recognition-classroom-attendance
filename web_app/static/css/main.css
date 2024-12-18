@@ -1,0 +1,334 @@
+/* General Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+/* Header Styles */
+header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+form {
+    width: 100%;
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Scoped styles for homepage */
+.homepage {
+    background-color: white;
+}
+
+.homepage .hero {
+    background: url('/static/images/hero-bg.jpg') no-repeat center center/cover;
+    height: 80vh;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.homepage .hero-content {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.homepage .hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.homepage .hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.homepage .btn-primary {
+    background-color: #007bff;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.homepage .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 0;
+}
+
+.feature {
+    text-align: center;
+    padding: 20px;
+}
+
+.feature h2 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.feature p {
+    color: #555;
+}
+
+.cta {
+    text-align: center;
+    padding: 40px;
+    background-color: #007bff;
+    color: white;
+}
+
+.cta h2 {
+    font-size: 2.2em;
+    margin-bottom: 20px;
+}
+
+.cta .btn-secondary {
+    background-color: #28a745;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cta .btn-secondary:hover {
+    background-color: #218838;
+}
+
+/* Styles for attendance-related pages */
+.attendance-page .attendance-table {
+    width: 100%;
+    max-width: 800px;
+    margin: 30px auto;
+    border-collapse: collapse;
+}
+
+.attendance-page .attendance-table th,
+.attendance-page .attendance-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+.attendance-page .attendance-table th {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.1em;
+}
+
+.attendance-page .attendance-table td {
+    background-color: #f9f9f9;
+}
+
+.attendance-page .attendance-table td:nth-child(4) {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/* Scoped style for pie chart attendance table */
+.attendance-page .attendance-table canvas {
+    width: 250px !important;
+    height: 250px !important;
+    display: block;
+    margin: 0 auto;
+}
+
+.attendance-page .attendance-table td {
+    width: 300px;
+    vertical-align: middle;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .attendance-page .attendance-table canvas {
+        width: 150px !important;
+        height: 150px !important;
+    }
+
+    .attendance-page .attendance-table td {
+        width: 180px;
+    }
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Styles for the Attendance Report Page */
+.attendance-page .report-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-page h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: #4CAF50;
+}
+
+.attendance-page .attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.attendance-page .attendance-table th, 
+.attendance-page .attendance-table td {
+    padding: 12px;
+    border: 1px solid #4CAF50; /* Make sure the border is visible */
+    text-align: center; /* Center text alignment */
+    vertical-align: middle; /* Align text vertically in the middle */
+}
+.attendance-page .attendance-table th {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.attendance-page .attendance-table td {
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+/* Ensure alternating row colors for better visibility */
+.attendance-page .attendance-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+@media (max-width: 768px) {
+    .attendance-page .attendance-table th, 
+    .attendance-page .attendance-table td {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+
+    .attendance-page h2 {
+        font-size: 1.5em;
+    }
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.table td {
+    text-align: center;
+}
+
+.table tr {
+    background-color: #f9f9f9;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.attendance-report {
+    margin: 50px auto;
+    width: 80%;
+    text-align: center;
+}
+
+h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}

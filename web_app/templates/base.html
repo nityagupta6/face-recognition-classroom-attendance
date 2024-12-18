@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+    <title>{% block title %}Face Recognition Attendance{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="{{ url_for('app_routes.home') }}">Home</a></li>
+                {% if current_user.is_authenticated %}
+                    {% if current_user.role == 'student' %}
+                        <li><a href="{{ url_for('app_routes.student_dashboard') }}">Dashboard</a></li>
+                    {% elif current_user.role == 'professor' %}
+                        <li><a href="{{ url_for('app_routes.professor_dashboard') }}">Dashboard</a></li>
+                    {% endif %}
+                    <li><a href="{{ url_for('app_routes.logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('app_routes.login') }}">Login</a></li>
+                    <li><a href="{{ url_for('app_routes.register') }}">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            © 2024 Face Recognition Attendance
+        </div>
+    </footer>
+    
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+    
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+    
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+    
+        main {
+            flex: 1;
+            padding-top: 60px; /* Adjust based on header height */
+            padding-bottom: 40px; /* Adjust based on footer height */
+        }
+    
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .header-content a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+    </style>
+    
+</body>
+</html>

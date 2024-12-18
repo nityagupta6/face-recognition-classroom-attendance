@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Class Details{% endblock %}
+{% block content %}
+<div class="dashboard-container">
+    <h2>Course: {{ course.name }}</h2>
+    <p>Classroom: {{ classroom.location }} {{ classroom.name }}</p>
+    <p>Date: {{ date }}</p>
+
+    <!-- End Attendance Button -->
+    <form method="POST" action="{{ url_for('app_routes.end_attendance', course_id=course.id) }}">
+        <button type="submit" class="btn btn-danger">End Attendance</button>
+    </form>
+</div>
+{% endblock %}

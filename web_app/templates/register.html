@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="form-container">
+    <h2>Register</h2>
+    <!-- Flash messages for registration errors -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    
+    <form method="POST" enctype="multipart/form-data" action="{{ url_for('app_routes.register') }}">
+        {{ form.hidden_tag() }}
+        
+        <!-- Name field (common for both student and professor) -->
+        <div class="form-group">
+            {{ form.name.label }}
+            {{ form.name(class="form-control") }}
+        </div>
+
+        <!-- Enrollment number field (visible only for students) -->
+        <div class="form-group" id="enrollment-group">
+            {{ form.enrollment_number.label }}
+            {{ form.enrollment_number(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.email.label }}
+            {{ form.email(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.password.label }}
+            {{ form.password(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.confirm_password.label }}
+            {{ form.confirm_password(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.role.label }}
+            {{ form.role(class="form-control") }}
+        </div>
+
+        <!-- Image upload field, dynamically set based on the selected role -->
+        <div class="form-group" id="upload-group">
+            <label for="file-input" id="upload-label">Upload Images</label>
+            <input type="file" id="file-input" name="images" accept="image/*">
+            <p id="image-hint">Please upload images.</p>
+        </div>
+
+        <button type="submit" class="btn btn-success">Register</button>
+    </form>
+</div>
+
+<!-- JavaScript to handle dynamic fields based on the selected role -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const roleField = document.querySelector('select[name="role"]');
+        const enrollmentGroup = document.getElementById('enrollment-group');
+        const fileInput = document.getElementById('file-input');
+        const uploadLabel = document.getElementById('upload-label');
+        const imageHint = document.getElementById('image-hint');
+
+        roleField.addEventListener('change', function() {
+            if (roleField.value === 'student') {
+                enrollmentGroup.style.display = 'block';  // Show enrollment number for students
+                fileInput.setAttribute('multiple', 'multiple');  // Allow multiple file uploads
+                uploadLabel.textContent = "Upload 5 images from different angles";
+                imageHint.textContent = "Please upload exactly 5 images.";
+            } else if (roleField.value === 'professor') {
+                enrollmentGroup.style.display = 'none';  // Hide enrollment number for professors
+                fileInput.removeAttribute('multiple');  // Only allow 1 file
+                uploadLabel.textContent = "Upload 1 image";
+                imageHint.textContent = "Please upload exactly 1 image.";
+            }
+        });
+
+        // Trigger the change event on page load to apply the role-specific logic
+        roleField.dispatchEvent(new Event('change'));
+    });
+</script>
+{% endblock %}
